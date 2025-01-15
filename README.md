@@ -1,4 +1,4 @@
-[https://cerulean-tapioca-b51aaf.netlify.app/](https://mdhticketsolutions.netlify.app/)
+https://mdhticketsolutions.netlify.app/
 # Ticket Management System
 
 A modern, React-based ticket management system with real-time analytics and AI-powered support assistance.
