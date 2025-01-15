@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Ticket Management System
 
 A modern, React-based ticket management system with real-time analytics and AI-powered support assistance.
@@ -112,3 +113,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Styled with Tailwind CSS
 - Icons provided by Lucide React
 - Developed with Vite
+=======
+# New-ticket-system
+>>>>>>> 53d1007bb58d4547a2fe5f8b90bb0af5b5a0921a
