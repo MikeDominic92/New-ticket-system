@@ -5,7 +5,7 @@ A modern, React-based ticket management system with real-time analytics and AI-p
 ![Ticket Management System](https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=2000)
 
 ## Live Demo
-🌐 [Visit the Live Application](https://ticket-system-portfolio-2025.uc.r.appspot.com)
+🌐 [Visit the Live Application](https://ticket-system-portfolio-2025.nn.r.appspot.com/)
 
 ## Features
 
@@ -75,7 +75,7 @@ npm run build
 
 The application is automatically deployed to Google Cloud Platform using GitHub Actions when changes are pushed to the Main branch.
 
-Visit the deployed application at: [https://ticket-system-portfolio-2025.uc.r.appspot.com](https://ticket-system-portfolio-2025.uc.r.appspot.com)
+Visit the deployed application at: [https://ticket-system-portfolio-2025.nn.r.appspot.com/](https://ticket-system-portfolio-2025.nn.r.appspot.com/)
 
 ## Documentation
 
