@@ -6,7 +6,7 @@ env: standard
 env_variables:
   DEEPSEEK_API_ENDPOINT: "https://api.deepseek.com/v1"
   NODE_ENV: "production"
-  API_BASE_URL: "https://ticket-system-portfolio-2025.nn.r.appspot.com"
+  API_BASE_URL: "https://primordial-hall-448409-j6.nn.r.appspot.com"
 
 handlers:
   - url: /(.*\.(json|ico|js|css|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot))$
