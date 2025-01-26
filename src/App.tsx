@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { TicketList } from './components/TicketList';
+import { TicketList } from './components/tickets/TicketList';
 import { TicketDetail } from './components/TicketDetail';
 import { TicketHistory } from './components/TicketHistory';
 import { TicketStatsPanel } from './components/TicketStats';
 import { ActivityAnalysis } from './components/ActivityAnalysis';
 import { SolutionSuggestions } from './components/SolutionSuggestions';
 import { AISupportAssistant } from './components/AISupportAssistant';
+import { KnowledgeBase } from './components/knowledge/KnowledgeBase';
+import { SideConversation } from './components/tickets/SideConversation';
 import { Ticket, TicketStats } from './types';
 import { LayoutGrid, ListFilter } from 'lucide-react';
 import { analyzeTicketActivity, analyzeSolutions } from './utils';
@@ -264,7 +266,7 @@ const calculateStats = (tickets: Ticket[]): TicketStats => {
 };
 
 function App() {
-  const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
+  const [selectedTicketId, setSelectedTicketId] = useState<string | null>(null);
   const [tickets] = useState<Ticket[]>(sampleTickets);
   const [activeTab, setActiveTab] = useState<'active' | 'history'>('active');
 
@@ -272,49 +274,36 @@ function App() {
   const activeTickets = tickets.filter(t => t.status !== 'Resolved');
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <LayoutGrid className="w-8 h-8 text-blue-600 mr-3" />
-              <h1 className="text-2xl font-bold text-gray-900">
-                Ticket Management System
-              </h1>
-            </div>
-            <div className="flex space-x-4">
-              <button
-                onClick={() => setActiveTab('active')}
-                className={`px-4 py-2 rounded-lg transition-colors duration-200 ${
-                  activeTab === 'active'
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                Active Tickets
+    <div className="min-h-screen bg-gray-50">
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
+            <h1 className="text-xl font-semibold text-gray-900">Ticket System</h1>
+            <div className="flex items-center space-x-4">
+              <button className="text-gray-500 hover:text-gray-700">
+                <span className="sr-only">Notifications</span>
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
               </button>
-              <button
-                onClick={() => setActiveTab('history')}
-                className={`px-4 py-2 rounded-lg transition-colors duration-200 ${
-                  activeTab === 'history'
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                Ticket History
+              <button className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-900">
+                <img className="h-8 w-8 rounded-full" src="https://avatars.githubusercontent.com/u/12345678?v=4" alt="" />
+                <span className="ml-2">John Doe</span>
               </button>
             </div>
           </div>
         </div>
       </header>
-
-      <main className="max-w-7xl mx-auto px-4 py-6">
+      
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {activeTab === 'active' ? (
           <div className="grid grid-cols-12 gap-6">
             {/* Left Column: Ticket Details */}
             <div className="col-span-8">
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                <TicketDetail ticket={selectedTicket} />
+                {selectedTicketId && (
+                  <TicketDetail ticket={tickets.find(t => t.id === selectedTicketId)} />
+                )}
               </div>
             </div>
 
@@ -329,7 +318,7 @@ function App() {
                 </div>
                 <TicketList
                   tickets={activeTickets}
-                  onSelectTicket={setSelectedTicket}
+                  onSelectTicket={setSelectedTicketId}
                 />
               </div>
             </div>
@@ -346,7 +335,7 @@ function App() {
               <div className="lg:col-span-2">
                 <TicketHistory
                   tickets={tickets}
-                  onSelectTicket={setSelectedTicket}
+                  onSelectTicket={setSelectedTicketId}
                 />
               </div>
               
@@ -357,6 +346,10 @@ function App() {
                   predictedPeakHours={stats.predictedPeakHours}
                 />
                 <SolutionSuggestions commonSolutions={stats.commonSolutions} />
+                <KnowledgeBase />
+                {selectedTicketId && (
+                  <SideConversation ticketId={selectedTicketId} />
+                )}
               </div>
             </div>
           </>
