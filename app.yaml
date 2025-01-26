@@ -1,0 +1,22 @@
+runtime: nodejs18
+
+env_variables:
+  DEEPSEEK_API_ENDPOINT: "https://api.deepseek.com/v1"
+  API_BASE_URL: "https://YOUR-PROJECT-ID.uc.r.appspot.com"
+  NODE_ENV: "production"
+
+handlers:
+  - url: /static
+    static_dir: dist/static
+    secure: always
+
+  - url: /.*
+    script: auto
+    secure: always
+
+instance_class: F1
+
+automatic_scaling:
+  target_cpu_utilization: 0.65
+  min_instances: 1
+  max_instances: 10
