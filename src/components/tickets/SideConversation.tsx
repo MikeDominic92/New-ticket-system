@@ -25,7 +25,7 @@ const MOCK_MESSAGES: Message[] = [
   {
     id: '2',
     sender: 'Jane Smith',
-    content: 'Good idea. I've attached the recent logs for review.',
+    content: 'Good idea. I\'ve attached the recent logs for review.',
     timestamp: '10:32 AM',
     attachments: [
       { name: 'server_logs.txt', size: '2.3 MB' },
